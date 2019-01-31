@@ -1,43 +1,25 @@
+//normal express server 
 const express = require('express');
+
+// express-graphql is a middleware allow express to understand graphql
+//it's just a middleware that can understand graphql we will ue this middleware on the app  
+const graphqlHTTP = require('express-graphql');
 const app = express();
+const schema = require('./schema');
 
-import {router} from './router';
+// bind express with graphql
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql:true
+}));
 
 
-
-// application router 
-app.use('/',(req,res)=>{
-    res.send('Hello');
-});
-//application router to specific request method
-app.get('/path',(req,res)=>{
-
-})
- app.use((req,res,next)=>{
-     //application middleware to the whole app 
- }); 
-
- app.use('/path',(req,res,next)=>{
-    //application middleware to the specific route
-    // i can define the method too  
-}); 
-// use express router 
-app.use(router);
-
-// i can use the router as a subpathes 
-app.use('/admin/',router); // will use all routes with prefix /admin/
 
 
 app.listen(9000,()=>{
     console.log('listening to port 900..');
     
-})
-
-//application layaer middleware 
-app.use((req,res,next)=>{
-    console.log('middleware..');
-    next();
-
 });
+
 
 
