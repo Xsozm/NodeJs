@@ -20,4 +20,4 @@ router.use('/path',(req,res,next)=>{
 
 });
 
-//we can use many middlewares for specific route 
+//we can use many middlewares for specific method 
